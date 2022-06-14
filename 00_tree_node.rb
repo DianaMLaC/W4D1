@@ -46,8 +46,11 @@ module Searchable
         nil
     end
 
-    def bfa(target = nil, &prc)
+    def bfs(target = nil, &prc)
         raise "Need a proc or target" if [target, prc].none?
+        prc ||= Proc.new {|node| node.value == target }
+
+
 
 
 

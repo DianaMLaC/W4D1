@@ -22,11 +22,11 @@ class KnightPathFinder
         new_moves.shuffle.last
     end
 
+
     def new_move_positions(pos)
         new_moves = KnightT.valid_moves(pos)
-        new_moves.select do |coor|
-            x, y = coor
-            considered_positions.each {|past_pos| false ? (past_pos.first == x && past_pos.last == y) : true }
+        new_moves.select{ |coor| !considered_positions.include?(coor)}
+        
 
         end
         new_moves
@@ -35,13 +35,23 @@ class KnightPathFinder
 
     def initialize(start_pos)
         @start_pos = start_pos
-        @root_node = PolyTreeNode.new(start_pos) #
+        # @root_node = PolyTreeNode.new(start_pos)
+        @considered_positions = [start_pos] #
+        
+        build_move_tree
+    end
 
+    def find_path
     end
 
     def build_move_tree
-        @considered_positions = [start_pos] #[2, 1] << next_pos
-
+        while queue != []
+            queue << @new_move_positions
+        end
+        
+         #[2, 1] << next_pos
+            #considered_positions is an array with the start x and y
+        
     end
 
     
